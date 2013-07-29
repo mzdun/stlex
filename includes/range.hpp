@@ -3,11 +3,14 @@
 
 #include "xrange.hpp"
 
-namespace std { namespace ext
+namespace std_ext
 {
 
 	template <typename It>
 	impl::range_t<It> inline make_range(It from, It to) { return { from, to }; }
+
+	template <typename It>
+	impl::range_t<It> inline range(It from, It to) { return { from, to }; }
 
 	template <typename _Container>
 	auto inline reverse(_Container& container)
@@ -29,6 +32,25 @@ namespace std { namespace ext
 		return { arr + len, arr };
 	}
 
-}} // std::ext
+	template <typename _Container>
+	auto inline slice(_Container& container, size_t begin, size_t end)
+		-> impl::range_t<decltype(container.begin())>
+	{
+		return make_range(container.begin() + begin, container.begin() + end);
+	}
+
+	template <typename T, size_t len>
+	impl::range_t<T*> inline slice(T(&arr)[len], size_t begin, size_t end)
+	{
+		return { arr + begin, arr + end };
+	}
+
+} // std_ext
+
+using ::std_ext::make_range;
+using ::std_ext::range;
+using ::std_ext::reverse;
+
+// no std_ext::slice, to not mix it with std::slice
 
 #endif // __RANGE_HEADER__
