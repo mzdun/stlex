@@ -41,16 +41,36 @@ namespace std_ext
 	}
 
 	template <typename _Container>
+	auto inline slice(_Container& container, size_t begin)
+		-> impl::range_t<decltype(container.begin())>
+	{
+		return make_range(container.begin() + begin, container.end());
+	}
+
+	template <typename _Container>
 	auto inline slice(const _Container& container, size_t begin, size_t end)
 		-> impl::range_t<decltype(container.begin())>
 	{
 		return make_range(container.begin() + begin, container.begin() + end);
 	}
 
+	template <typename _Container>
+	auto inline slice(const _Container& container, size_t begin)
+		-> impl::range_t<decltype(container.begin())>
+	{
+		return make_range(container.begin() + begin, container.end());
+	}
+
 	template <typename T, size_t len>
 	impl::range_t<T*> inline slice(T(&arr)[len], size_t begin, size_t end)
 	{
 		return { arr + begin, arr + end };
+	}
+
+	template <typename T, size_t len>
+	impl::range_t<T*> inline slice(T(&arr)[len], size_t begin)
+	{
+		return { arr + begin, arr + len };
 	}
 
 } // std_ext
