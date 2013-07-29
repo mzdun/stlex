@@ -2,12 +2,9 @@
 #define __RANGE_HEADER__
 
 #include "xrange.hpp"
-#include <iterator>
 
 namespace std { namespace ext
 {
-	using std::begin;
-	using std::end;
 
 	template <typename It>
 	impl::range_t<It> inline make_range(It from, It to) { return { from, to }; }
@@ -31,6 +28,7 @@ namespace std { namespace ext
 	{
 		return { arr + len, arr };
 	}
-}}
+
+}} // std::ext
 
 #endif // __RANGE_HEADER__

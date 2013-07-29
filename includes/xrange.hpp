@@ -2,6 +2,7 @@
 #define __XRANGE_HEADER__
 
 namespace std { namespace ext { namespace impl {
+
 	template <typename It>
 	class range_t
 	{
@@ -80,6 +81,6 @@ namespace std { namespace ext { namespace impl {
 		return !(rhs < lhs);
 	}
 
-}}}
+}}} // std::ext::impl
 
 #endif // __XRANGE_HEADER__
