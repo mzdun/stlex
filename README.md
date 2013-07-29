@@ -55,14 +55,22 @@ Synopsis:
         auto std_ext::slice(Container& container, size_t begin, size_t end);
     template <typename Container>
         auto std_ext::slice(const Container& container, size_t begin, size_t end);
+    template <typename T, size_t len>
+        auto std_ext::slice(T (&container)[len], size_t begin, size_t end);
 
-Alias for `make_range(container.begin() + begin, container.begin() + end)`.
 
-### slice(array, begin, end) ###
+Alias for `make_range(begin(container) + begin, begin(container) + end)`.
+
+### slice(container, begin) ###
 
 Synopsis:
 
+    template <typename Container>
+        auto std_ext::slice(Container& container, size_t begin);
+    template <typename Container>
+        auto std_ext::slice(const Container& container, size_t begin);
     template <typename T, size_t len>
-        auto std_ext::slice(T (&array)[len], size_t begin, size_t end);
+        auto std_ext::slice(T (&container)[len], size_t begin);
 
-Alias for `make_range(array + begin, array + end)`.
+
+Alias for `make_range(begin(container) + begin, end(container))`.
