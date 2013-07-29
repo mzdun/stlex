@@ -10,7 +10,7 @@ namespace std { namespace ext
 	using std::end;
 
 	template <typename It>
-	impl::range_t<It> make_range(It from, It to) { return impl::range_t<It>(from, to); }
+	impl::range_t<It> inline make_range(It from, It to) { return { from, to }; }
 
 	template <typename _Container>
 	auto inline reverse(_Container& container)
@@ -24,6 +24,12 @@ namespace std { namespace ext
 		-> impl::range_t<decltype(container.rbegin())>
 	{
 		return make_range(container.rbegin(), container.rend());
+	}
+
+	template <typename T, size_t len>
+	impl::range_t<impl::array_reverse_adaptor_t<T>> inline reverse(T(&arr)[len])
+	{
+		return { arr + len, arr };
 	}
 }}
 
