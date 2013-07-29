@@ -1,4 +1,4 @@
-stl::ext
+stl_ext
 ========
 
 API inspired by C++11 standard library
@@ -12,7 +12,7 @@ This header contains utilities for range-based `for` loops. For example:
         std::cout << s << " "; // lamb little a had Marry
     std::cout << std::endl;
     
-    for (auto && s : slice(poem, 2, 5))
+    for (auto && s : std_ext::slice(poem, 2))
         std::cout << s << " "; // a little lamb
     std::cout << std::endl;
 
@@ -25,7 +25,7 @@ Synopsis:
     template <typename It>
         auto std_ext::range(It begin, It end);
 
-Creates an object usable in a range-based `for` loop, iterating between `begin` and `end`. `range` and `make_range` are aliases for the same functionality, with the latter name similar to the `std::make_*` family (such as `std::make_pair` or `std::make_shared`).
+Creates an object usable in a range-based `for` loop, iterating between `begin` and `end`. `range` and `make_range` are aliases for the same functionality, with the latter name similar to the `std::make_*` family, such as `std::make_pair` or `std::make_shared`.
 
 ### reverse(container) ###
 
